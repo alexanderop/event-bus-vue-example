@@ -1,5 +1,14 @@
 @import './markdown.css';
 
+:root {
+  --color-fill: 33, 39, 55;
+  --color-text-base: 234, 237, 243;
+  --color-accent: 255, 107, 237;
+  --color-card: 52, 63, 96;
+  --color-card-muted: 138, 51, 123;
+  --color-border: 171, 75, 153;
+}
+
 html,
 body,
 #app {
@@ -8,9 +17,13 @@ body,
   padding: 0;
 }
 
-html.dark {
-  background: #121212;
-  color-scheme: dark;
+html {
+  background: rgb(var(--color-fill));
+  color: rgb(var(--color-text-base));
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #nprogress {
@@ -18,7 +31,7 @@ html.dark {
 }
 
 #nprogress .bar {
-  background: rgb(13, 148, 136);
+  background: rgb(var(--color-accent));
   opacity: 0.75;
   position: fixed;
   z-index: 1031;

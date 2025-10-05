@@ -1,28 +1,35 @@
-import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import TheCounter from '../src/components/TheCounter.vue'
+import { render } from 'vitest-browser-vue'
+import { mittBus } from '../src/bus/mitt-bus'
+import CounterPanel from '../src/components/CounterPanel.vue'
 
-describe('component TheCounter.vue', () => {
-  it('should render', () => {
-    const wrapper = mount(TheCounter, { props: { initial: 10 } })
-    expect(wrapper.text()).toContain('10')
-    expect(wrapper.html()).toMatchSnapshot()
+describe('component CounterPanel.vue', () => {
+  it('should render', async () => {
+    const bus = mittBus()
+    const screen = render(CounterPanel, { props: { bus } })
+    bus.emit(10)
+    await new Promise(resolve => setTimeout(resolve, 10)) // Wait for reactivity
+    const valueElement = screen.container.querySelector('.value-number')
+    expect(valueElement?.textContent).toBe('10')
   })
 
   it('should be interactive', async () => {
-    const wrapper = mount(TheCounter, { props: { initial: 0 } })
-    expect(wrapper.text()).toContain('0')
+    const bus = mittBus()
+    const screen = render(CounterPanel, { props: { bus } })
 
-    expect(wrapper.find('.inc').exists()).toBe(true)
+    const valueElement = screen.container.querySelector('.value-number')
+    expect(valueElement?.textContent).toBe('0')
 
-    expect(wrapper.find('.dec').exists()).toBe(true)
+    // Get buttons
+    const incrementButton = screen.getByRole('button', { name: /\+1/ })
+    const decrementButton = screen.getByRole('button', { name: /-1/ })
 
-    await wrapper.get('.inc').trigger('click')
+    // Click increment button
+    await incrementButton.click()
+    expect(valueElement?.textContent).toBe('1')
 
-    expect(wrapper.text()).toContain('1')
-
-    await wrapper.get('.dec').trigger('click')
-
-    expect(wrapper.text()).toContain('0')
+    // Click decrement button
+    await decrementButton.click()
+    expect(valueElement?.textContent).toBe('0')
   })
 })

@@ -20,8 +20,10 @@
     "@unhead/vue": "catalog:frontend",
     "@unocss/reset": "catalog:frontend",
     "@vueuse/core": "catalog:frontend",
+    "mitt": "catalog:",
     "nprogress": "catalog:frontend",
     "pinia": "catalog:frontend",
+    "rxjs": "catalog:",
     "vue": "catalog:frontend",
     "vue-i18n": "catalog:frontend",
     "vue-router": "catalog:frontend"
@@ -35,6 +37,7 @@
     "@types/nprogress": "catalog:types",
     "@unocss/eslint-config": "catalog:build",
     "@vitejs/plugin-vue": "catalog:build",
+    "@vitest/browser": "catalog:",
     "@vue-macros/volar": "catalog:dev",
     "@vue/test-utils": "catalog:dev",
     "beasties": "catalog:build",
@@ -46,6 +49,7 @@
     "https-localhost": "catalog:dev",
     "lint-staged": "catalog:dev",
     "markdown-it-link-attributes": "catalog:build",
+    "playwright": "catalog:",
     "rollup": "catalog:build",
     "shiki": "catalog:build",
     "simple-git-hooks": "catalog:dev",
@@ -65,7 +69,8 @@
     "vite-plugin-vue-layouts": "catalog:build",
     "vite-ssg": "catalog:build",
     "vite-ssg-sitemap": "catalog:build",
-    "vitest": "catalog:dev",
+    "vitest": "catalog:conflicts_dev_h3_2_4",
+    "vitest-browser-vue": "catalog:",
     "vue-tsc": "catalog:dev"
   },
   "resolutions": {

@@ -1,5 +1,12 @@
 packages: []
 
+catalog:
+  '@vitest/browser': ^3.2.4
+  mitt: ^3.0.1
+  playwright: ^1.55.1
+  rxjs: ^7.8.2
+  vitest-browser-vue: ^1.1.0
+
 catalogs:
 
   build:
@@ -27,6 +34,9 @@ catalogs:
     vite-ssg: ^26.0.0
     vite-ssg-sitemap: ^0.8.1
 
+  conflicts_dev_h3_2_4:
+    vitest: ^3.2.4
+
   dev:
     '@antfu/eslint-config': ^4.11.0
     '@iconify-json/carbon': ^1.2.8
@@ -42,7 +52,6 @@ catalogs:
     simple-git-hooks: ^2.12.1
     taze: ^19.0.2
     typescript: ^5.8.2
-    vitest: ^3.0.9
     vue-tsc: ^2.2.8
 
   frontend:
@@ -58,7 +67,6 @@ catalogs:
   types:
     '@types/markdown-it-link-attributes': ^3.0.5
     '@types/nprogress': ^0.2.3
-
 onlyBuiltDependencies:
   - cypress
   - esbuild

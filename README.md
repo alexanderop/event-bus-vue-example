@@ -24,7 +24,7 @@ A lightweight event emitter library that provides a simple pub/sub interface.
 
 **Use when:** You need a simple, lightweight solution for basic event communication.
 
-### 2. **Pinia Stores (Recommended)**
+### 2. **Pinia Stores**
 Vue's official state management solution that can also handle cross-component communication.
 
 **Pros:**
@@ -39,7 +39,7 @@ Vue's official state management solution that can also handle cross-component co
 - Slightly more setup than a simple event bus
 - May be overkill for very simple use cases
 
-**Use when:** You need state management alongside event communication, or want the most maintainable solution.
+**Use when:** You need state management alongside event communication, or want DevTools integration.
 
 ### 3. **Composables with Reactive State**
 Create a composable that returns reactive state and methods.
@@ -71,12 +71,13 @@ Vue's built-in dependency injection system.
 
 **Use when:** Communication is within a component tree hierarchy.
 
-### 5. **Global Properties (Not Recommended)**
+### 5. **Global Properties**
 Attaching an event emitter to `app.config.globalProperties`.
 
 **Pros:**
 - Globally available
 - Simple setup
+- Familiar pattern from Vue 2
 
 **Cons:**
 - Pollutes global namespace
@@ -84,7 +85,7 @@ Attaching an event emitter to `app.config.globalProperties`.
 - Difficult to test
 - Not composable
 
-**Use when:** Legacy code migration only.
+**Use when:** Working with legacy code or Vue 2 migration patterns.
 
 ## Project Features
 
@@ -232,16 +233,17 @@ export function useEventBus() {
 
 1. **Always clean up listeners** - Use `onUnmounted` or `onBeforeUnmount` to remove event listeners
 2. **Type your events** - Define event names and payloads as TypeScript types
-3. **Prefer Pinia for complex apps** - Better DevTools integration and maintainability
-4. **Use provide/inject for tree-scoped communication** - Better than global event bus
-5. **Consider props/emits first** - Event bus should be last resort for distant components
+3. **Choose based on your needs** - Each approach has different trade-offs for complexity, maintenance, and features
+4. **Consider component relationship** - Direct parent-child or tree-scoped communication may suit different patterns
+5. **Evaluate alternatives** - Event bus is one option among props/emits, provide/inject, and state management
 
-## When NOT to Use an Event Bus
+## Alternative Communication Patterns
 
-- Parent-child communication → Use props and emits
-- Shared state → Use Pinia stores
-- Simple data passing → Use provide/inject
-- Route-based communication → Use route params/query
+- **Parent-child communication** - Props and emits
+- **Shared state** - State management stores (Pinia, Vuex)
+- **Tree-scoped data passing** - Provide/inject
+- **Route-based communication** - Route params/query
+- **Event bus** - Cross-component communication without direct relationship
 
 ## License
 
